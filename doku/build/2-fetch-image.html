@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Process Images | Pixeldragon</title>
+
+    <!-- Styles and fonts -->
+    <link href="themes/glide/stylesheets/glide.css" rel="stylesheet" />
+    <link href="themes/glide/stylesheets/syntax.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <script src="themes/glide/javascripts/modernizr.js"></script>
+  </head>
+
+  <body class="x2-fetch-image glide">
+    <div class="page-wrapper">
+
+      <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+      <header class="page-header" role="banner">
+<a class="invisilink" href="./">            <span class="book-title">Pixeldragon</span>
+</a>        <span class="book-author visuallyhidden">by Andreas Trawoeger</span>
+      </header>
+
+        <div class="content-wrapper clearfix">
+
+          <section class="main-content" role="main">
+            <div class="main-content-source">
+              <h1>Process Images</h1>
+
+<h2>Create image definition</h2>
+
+<p>Each image is defined by a json file defining the URL and the internal identifier of an image.</p>
+
+<p>fetch_wikipedia.json</p>
+<pre class="highlight shell"><code><span class="o">{</span>
+    <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"https://upload.wikimedia.org/wikipedia/commons/8/8d/Small_bodies_of_the_Solar_System.jpg"</span>, <span class="s2">"Small_bodies_of_the_Solar_System"</span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>If necessary the json file can include the necessary user credential.</p>
+
+<p>fetch_with_auth.json</p>
+<pre class="highlight shell"><code><span class="o">{</span>
+    <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"https://USER:PWD@fedora.phaidra-sandbox.univie.ac.at/fedora/get/o:99045/bdef:Content/download"</span>, <span class="s2">"99045"</span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<h2>Fetch image</h2>
+
+<p>Once defined the the image definitions can be passed to the fetch_image task. Which will fetch and process the image to be distributed by the Internet Image Protocol Server</p>
+<pre class="highlight shell"><code><span class="nv">HOSTNAME</span><span class="o">=</span>labrat03.phaidra.org
+curl -H <span class="s2">"Content-Type: application/json"</span> --data @fetch_wikipedia.json http://<span class="nv">$HOSTNAME</span>/api/task/send-task/tasks.fetch_image
+curl -H <span class="s2">"Content-Type: application/json"</span> --data @fetch_with_auth.json http://<span class="nv">$HOSTNAME</span>/api/task/send-task/tasks.fetch_image
+</code></pre>
+
+            </div>
+            <nav class="main-content-nav clearfix" role="navigation">
+              <ul>
+                <li><a class="previous" href="1-installation.html">Previous</a></li>
+                <li><a class="next" href="3-access-images.html">Next</a></li>
+              </ul>
+            </nav>
+          </section>
+
+          <aside class="aside-content" role="complementary">
+            <div class="aside-wrapper">
+
+              <div class="block table-of-contents">
+                <h3>Table of Contents</h3>
+                <nav role="navigation">
+                  <ul>
+                    <li class='child '><a href="./">Front Page</a></li><li class='child '><a href="1-installation.html">Installation</a></li><li class='child active'><a href="2-fetch-image.html">Process Images</a></li><li class='child '><a href="3-access-images.html">Access Images</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <!--
+              <div class="block translations">
+                <h3>Book translations</h3>
+                <p>This book is translated into
+                  <a href="#">Spanish</a>
+                  and <a href="#">English</a>.
+                  You can help with more translations <a href="https://github.com/HexaPlant/pixeldragon">on Github</a>.
+                </p>
+              </div>
+              -->
+            </div><!-- end aside-wrapper -->
+          </aside>
+
+        </div><!-- end content-wrapper -->
+
+
+    </div><!-- end page-wrapper -->
+
+    <!-- include scripts just before the close of the body tag -->
+    <script src="themes/glide/javascripts/anchor.min.js"></script>
+    <script src="themes/glide/javascripts/glide.js"></script>
+  </body>
+</html>

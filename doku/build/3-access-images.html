@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Access Images | Pixeldragon</title>
+
+    <!-- Styles and fonts -->
+    <link href="themes/glide/stylesheets/glide.css" rel="stylesheet" />
+    <link href="themes/glide/stylesheets/syntax.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <script src="themes/glide/javascripts/modernizr.js"></script>
+  </head>
+
+  <body class="x3-access-images glide">
+    <div class="page-wrapper">
+
+      <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+      <header class="page-header" role="banner">
+<a class="invisilink" href="./">            <span class="book-title">Pixeldragon</span>
+</a>        <span class="book-author visuallyhidden">by Andreas Trawoeger</span>
+      </header>
+
+        <div class="content-wrapper clearfix">
+
+          <section class="main-content" role="main">
+            <div class="main-content-source">
+              <h1>Access Images</h1>
+
+<p>Pixeldragon supports the <a href="http://iiif.io/api/image/2.0/">International Image Interoperability Framework 2.0 API</a> using the scheme:</p>
+<pre class="highlight shell"><code>http://server/fcgi-bin/iipsrv.fcgi?IIIF<span class="o">=</span>image.tif/<span class="o">{</span>region<span class="o">}</span>/<span class="o">{</span>size<span class="o">}</span>/<span class="o">{</span>rotation<span class="o">}</span>/<span class="o">{</span>quality<span class="o">}</span>.<span class="o">{</span>format<span class="o">}</span>
+</code></pre>
+
+<p>Pixeldragon also support accesing images via Zoomify</p>
+<pre class="highlight shell"><code>http://server/fcgi-bin/iipsrv.fcgi?Zoomify<span class="o">=</span>image.tif
+</code></pre>
+
+<p>and DeepZoom protocol</p>
+<pre class="highlight shell"><code>http://server/fcgi-bin/iipsrv.fcgiDeepZoom<span class="o">==</span>image.tif
+</code></pre>
+
+<h2>Examples</h2>
+
+<h3>Resize image to 256x256 pixels</h3>
+<pre class="highlight shell"><code> http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF<span class="o">=</span>/e0202a.tif/full/256,256/0/default.jpg
+</code></pre>
+
+<p><img src="http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF=/e0202a.tif/full/256,256/0/default.jpg" /></p>
+
+<h3>Resize image to 20%</h3>
+<pre class="highlight shell"><code>http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF<span class="o">=</span>/e0202a.tif/full/pct:20/0/default.jpg
+</code></pre>
+
+<p><img src="http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF=/e0202a.tif/full/pct:20/0/default.jpg" /></p>
+
+<h3>Crop image by position and resize width to 256px</h3>
+<pre class="highlight shell"><code>http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF<span class="o">=</span>/e0202a.tif/125,15,500,500/256,/0/default.jpg
+</code></pre>
+
+<p><img src="http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF=/e0202a.tif/125,15,500,500/256,/0/default.jpg" /></p>
+
+<h3>Crop image by percent and resize height to 256px</h3>
+<pre class="highlight shell"><code>http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF<span class="o">=</span>/e0202a.tif/pct:50,0,40,70/,256/0/default.jpg
+</code></pre>
+
+<p><img src="http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF=/e0202a.tif/pct:50,0,40,70/,256/0/default.jpg" /></p>
+
+<h3>Resize image to 256x256 pixels and rotate by 180%</h3>
+<pre class="highlight shell"><code>http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF<span class="o">=</span>/e0202a.tif/full/256,256/180/default.jpg
+</code></pre>
+
+<p><img src="http://iiif.hexaplant.com/iipsrv/iipsrv.fcgi?IIIF=/e0202a.tif/full/256,256/180/default.jpg" /></p>
+
+            </div>
+            <nav class="main-content-nav clearfix" role="navigation">
+              <ul>
+                <li><a class="previous" href="2-fetch-image.html">Previous</a></li>
+                <li></li>
+              </ul>
+            </nav>
+          </section>
+
+          <aside class="aside-content" role="complementary">
+            <div class="aside-wrapper">
+
+              <div class="block table-of-contents">
+                <h3>Table of Contents</h3>
+                <nav role="navigation">
+                  <ul>
+                    <li class='child '><a href="./">Front Page</a></li><li class='child '><a href="1-installation.html">Installation</a></li><li class='child '><a href="2-fetch-image.html">Process Images</a></li><li class='child active'><a href="3-access-images.html">Access Images</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <!--
+              <div class="block translations">
+                <h3>Book translations</h3>
+                <p>This book is translated into
+                  <a href="#">Spanish</a>
+                  and <a href="#">English</a>.
+                  You can help with more translations <a href="https://github.com/HexaPlant/pixeldragon">on Github</a>.
+                </p>
+              </div>
+              -->
+            </div><!-- end aside-wrapper -->
+          </aside>
+
+        </div><!-- end content-wrapper -->
+
+
+    </div><!-- end page-wrapper -->
+
+    <!-- include scripts just before the close of the body tag -->
+    <script src="themes/glide/javascripts/anchor.min.js"></script>
+    <script src="themes/glide/javascripts/glide.js"></script>
+  </body>
+</html>

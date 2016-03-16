@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/404.html</loc>
+      <priority>0.5</priority>
+    </url>
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/README.html</loc>
+      <priority>0.5</priority>
+    </url>
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/</loc>
+      <priority>0.5</priority>
+    </url>
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/1-installation.html</loc>
+      <priority>0.5</priority>
+    </url>
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/2-fetch-image.html</loc>
+      <priority>0.5</priority>
+    </url>
+    <url>
+      <loc>http://hexaplant.github.io/pixeldragon/3-access-images.html</loc>
+      <priority>0.5</priority>
+    </url>
+</urlset>

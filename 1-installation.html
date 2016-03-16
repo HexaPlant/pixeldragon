@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Installation | Pixeldragon</title>
+
+    <!-- Styles and fonts -->
+    <link href="themes/glide/stylesheets/glide.css" rel="stylesheet" />
+    <link href="themes/glide/stylesheets/syntax.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <script src="themes/glide/javascripts/modernizr.js"></script>
+  </head>
+
+  <body class="x1-installation glide">
+    <div class="page-wrapper">
+
+      <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+      <header class="page-header" role="banner">
+<a class="invisilink" href="./">            <span class="book-title">Pixeldragon</span>
+</a>        <span class="book-author visuallyhidden">by Andreas Trawoeger</span>
+      </header>
+
+        <div class="content-wrapper clearfix">
+
+          <section class="main-content" role="main">
+            <div class="main-content-source">
+              <h1>Installation</h1>
+
+<h2>Install Docker &amp; Docker Compose</h2>
+<pre class="highlight shell"><code>yum install -y epel-release
+yum install -y docker python-pip
+pip install docker-compose
+</code></pre>
+
+<h2>Create Docker LVM</h2>
+
+<p>To improve performance Docker images should be stored in a thin provisioned Logical Volume.</p>
+<pre class="highlight shell"><code>pvcreate /dev/vdb
+vgcreate ivg /dev/vdb
+lvcreate --wipesignatures y -n data ivg -l 95%VG
+lvcreate --wipesignatures y -n metadata ivg -l 5%VG
+</code></pre>
+
+<p>Modify Docker the storage configuration in <em>/etc/sysconfig/docker-storage</em> to use the new logical volume.</p>
+<pre class="highlight shell"><code><span class="nv">DOCKER_STORAGE_OPTIONS</span><span class="o">=</span><span class="s2">"--storage-opt dm.datadev=/dev/ivg/data --storage-opt dm.metadatadev=/dev/ivg/metadata"</span>
+</code></pre>
+
+<h2>Enable &amp; Test Docker Installation</h2>
+<pre class="highlight shell"><code>systemctl start docker <span class="o">&amp;&amp;</span> systemctl <span class="nb">enable </span>docker <span class="o">&amp;&amp;</span>  systemctl status docker
+docker run hello-world
+docker info
+</code></pre>
+
+<h2>Remove old Docker images</h2>
+
+<p>Remove old Docker images if the already exist on the his</p>
+<pre class="highlight shell"><code>docker-compose rm -f redis
+docker-compose rm -f ids
+docker-compose rm -f flower
+docker-compose rm -f nginx
+docker-compose rm -f iipsrv
+</code></pre>
+
+<h2>Deploy Docker images</h2>
+
+<p>Create data directories.</p>
+<pre class="highlight shell"><code>mkdir -p /data/ids/tmp
+mkdir -p /data/ids/public
+mkdir -p /data/redis
+mkdir -p /data/log/nginx
+mkdir -p /data/log/iipsrv
+mkdir -p /data/cache/nginx
+</code></pre>
+
+<p>Clone Repository</p>
+<pre class="highlight shell"><code>mkdir -p /code
+<span class="nb">cd</span> /code 
+git clone https://github.com/HexaPlant/pixeldragon.git
+</code></pre>
+
+<p>Populate data directory</p>
+<pre class="highlight shell"><code>cp ./data/<span class="k">*</span> /data/ids/public
+</code></pre>
+
+<p>Build and deploy images</p>
+<pre class="highlight shell"><code>docker-compose build
+docker-compose up
+</code></pre>
+
+            </div>
+            <nav class="main-content-nav clearfix" role="navigation">
+              <ul>
+                <li><a class="previous" href="./">Previous</a></li>
+                <li><a class="next" href="2-fetch-image.html">Next</a></li>
+              </ul>
+            </nav>
+          </section>
+
+          <aside class="aside-content" role="complementary">
+            <div class="aside-wrapper">
+
+              <div class="block table-of-contents">
+                <h3>Table of Contents</h3>
+                <nav role="navigation">
+                  <ul>
+                    <li class='child '><a href="./">Front Page</a></li><li class='child active'><a href="1-installation.html">Installation</a></li><li class='child '><a href="2-fetch-image.html">Process Images</a></li><li class='child '><a href="3-access-images.html">Access Images</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <!--
+              <div class="block translations">
+                <h3>Book translations</h3>
+                <p>This book is translated into
+                  <a href="#">Spanish</a>
+                  and <a href="#">English</a>.
+                  You can help with more translations <a href="https://github.com/HexaPlant/pixeldragon">on Github</a>.
+                </p>
+              </div>
+              -->
+            </div><!-- end aside-wrapper -->
+          </aside>
+
+        </div><!-- end content-wrapper -->
+
+
+    </div><!-- end page-wrapper -->
+
+    <!-- include scripts just before the close of the body tag -->
+    <script src="themes/glide/javascripts/anchor.min.js"></script>
+    <script src="themes/glide/javascripts/glide.js"></script>
+  </body>
+</html>
