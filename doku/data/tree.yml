@@ -1,0 +1,5 @@
+---
+index.md: "/index.md"
+1-installation.md: "/1-installation.md"
+2-fetch-image.md: "/2-fetch-image.md"
+3-access-images.md: "/3-access-images.md"
