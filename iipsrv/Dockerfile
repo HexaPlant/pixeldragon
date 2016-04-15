@@ -28,4 +28,4 @@ ADD config/httpd.conf /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 
-CMD rm -f /run/apache2/apache2.pid;/usr/sbin/apachectl -D FOREGROUND
+CMD ls -lah  /run/apache2; rm -f /run/apache2/apache2.pid;/usr/sbin/apachectl -D FOREGROUND
