@@ -28,4 +28,5 @@ ADD config/httpd.conf /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 
+CMD ["rm", "-f", "/run/apache2/apache2.pid"]
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]

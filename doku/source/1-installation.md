@@ -74,7 +74,7 @@ Build and deploy images
 
 ```bash
 docker-compose build
-docker-compose up
+docker-compose up -d
 ```
 
 
