@@ -44,7 +44,7 @@ nginx:
     links:
         - flower
         - iipsrv
-        - loris
+#        - loris
         
     volumes:
         - ./nginx/conf.d:/etc/nginx/conf.d
